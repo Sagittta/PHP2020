@@ -2,6 +2,10 @@
 2020년 겨울방학 PHP 방과후
 
 
+## 알아야 할 것
+php에서 C:\Bitnami\wampstack-7.3.13-0\apache2\htdocs 가 루트
+
+
 ## PHP 문법
 * ```<?php        ?>```
 * ```echo``` 이용하여 출력
