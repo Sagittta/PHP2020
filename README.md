@@ -48,4 +48,4 @@ php 설정 파일
 
 
 ## 파일 복사하기
-```copy ( string $source , string $dest [, resource $context ] )```
+```copy ( $file_name , $new_file_name )```
