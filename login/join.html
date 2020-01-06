@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>join</title>
+    <link rel="stylesheet" type="text/css" href="./join.css"/>
+</head>
+<script>
+    function checkId() {
+        if (user_id == null || user_id.equals(""))
+            alert("id 입력해 !");
+        if (user_id.equals("test"))
+            alert("이미 있어 !");
+    }
+</script>
+<body>
+    <form method="post" action="join.php">
+        <div>
+            <table width=600>
+                <tr>
+                    <td colspan=2 class="mkCenter"><h2>회원가입</h2></td>
+                </tr>
+                <tr>
+                    <td>아이디</td>
+                    <td>
+                        <input type="text" name="user_id">
+                        <span onclick="checkId();" style="cursor: pointer;">[ID 중복 검사]</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input type="password" name="user_pwd"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호 확인</td>
+                    <td><input type="password" name="user_pwd2"></td>
+                </tr>
+                <tr>
+                    <td>이름</td>
+                    <td><input type="text" name="user_name"></td>
+                </tr>
+                <tr>
+                    <td>성별</td>
+                    <td>
+                        <input type="radio" name="user_s" value="남성">남성
+                        <input type="radio" name="user_s" value="여성">여성
+                    </td>
+                </tr>
+                <tr>
+                    <td>집 전화</td>
+                    <td><input type="text" name="telephone"></td>
+                </tr>
+                <tr>
+                    <td>휴대전화</td>
+                    <td><input type="text" name="phone"></td>
+                </tr>
+                <tr>
+                    <td>이메일</td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td>취미</td>
+                    <td>
+                        <input type="checkbox" name="hobby[]" value="낚시">낚시
+                        <input type="checkbox" name="hobby[]" value="운동">운동
+                        <input type="checkbox" name="hobby[]" value="여행">여행
+                    </td>
+                </tr>
+                <tr>
+                    <td>알게 된 계기</td>
+                    <td>
+                        <select name="cause">
+                            <option value="SNS">SNS</option>
+                            <option value="잡지">잡지</option>
+                            <option value="인터넷">인터넷</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>주소</td>
+                    <td>
+                        <input type="text" name="postal">
+                        <input type="button" value="우편번호 찾기"><br>
+                        <input type="text" name="add1" value="도로명주소">
+                        <input type="text" name="add2" value="지번주소"><br>
+                        <input type="text" name="add3" value="나머지 주소">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2 class="mkCenter">
+                        <input type="submit" value="회원가입">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
