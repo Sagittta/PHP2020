@@ -45,3 +45,7 @@ php 설정 파일
     * fread()
     * file_put_contents()
 3. fclose()
+
+
+## 파일 복사하기
+```copy ( string $source , string $dest [, resource $context ] )```
