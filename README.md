@@ -53,3 +53,17 @@ php 설정 파일
 
 ### 파일 삭제
 ```unlink($file_name)```
+
+
+## post 방식
+> html
+```
+  <form method="post" action="$php_file">
+    <input type="text" name="user_id">
+  </form>
+```
+> php
+```
+  $id = $_POST['user_id']
+```
+  
