@@ -1,0 +1,29 @@
+form 태그
+사용자가 입력할 수 있는 폼 제공
+<form method="post/get" action="처리할 파일">
+
+
+1. 한 줄 텍스트 입력
+<input type="text" name="" value="초기값" size=12 maxlength=20>
+
+2. 비밀번호 입력
+<input type="pwd" name="">
+
+3. 여러 줄 입력
+<textarea rows="30" cols="20">초기값</textarea>
+
+4. 선택
+<input type="checkbox" name="" value="">
+<input type="radio" name="1" value="">
+<input type="radio" name="1" value="">
+// radio 에서는 name 이 같아야 함.
+<select name="sel">
+    <option value="">서울</option>
+    <option value="">부산</option>
+    <option value="">대전</option>
+</select>
+
+5. 파일 업로드 / 선택 시
+<input type="file" name="">
+
+6. <input type="hidden">
