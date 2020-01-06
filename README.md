@@ -30,22 +30,26 @@ php 설정 파일
 ```$arr2 = ['a', 'b', 'c', 'd', 'e'];```
 
 
-## 파일 읽기
-1. fopen(file_name, "r")
-2.  * fgetc() : 한 글자씩 (사용 시 <br> 태그 사용해서 출력)
-    * fgets() : 한 줄씩
-    * fread(filepointer, filesize)
-    * file_get_contents
+## 파일 처리
+### 파일 읽기
+1. ```$fp = fopen($file_name, 'r')```
+2.  * ```fgetc($fp)``` : 한 글자씩 가져옴. while() 이용
+    * ```fgets($fp)``` : 한 줄씩 가져옴. while() 이용
+    * ```fread($fp, filesize($file_name))``` : 통째로 파일 가져옴.
 3. fclose()
+* ```file_get_contents($file_name)``` : 통째로 파일 가져옴. fopen() / fclose() 필요 없음.
 
 
-## 파일 쓰기
-1. fopen(file_name, "w")
-2.  * fputs()
-    * fread()
-    * file_put_contents()
-3. fclose()
+### 파일 쓰기
+1. ```$fp = fopen($file_name, 'w')```
+2.  * ```fputs()```
+    * ```fwrite($fp, contents)```
+    * ```file_put_contents()```
+3. ```fclose()```
 
 
-## 파일 복사하기
+### 파일 복사
 ```copy ( $file_name , $new_file_name )```
+
+### 파일 삭제
+```unlink($file_name)```
