@@ -25,12 +25,12 @@ $add3 = $_POST['add3'];
 </head>
 <body>
     <div>
-        <table width=600>
+        <table width=800>
             <tr>
                 <td colspan=2 class="mkCenter"><h2>회원가입</h2></td>
             </tr>
             <tr>
-                <td>아이디</td>
+                <td width=200>아이디</td>
                 <td><?php echo $id ?></td>
             </tr>
             <tr>
@@ -74,7 +74,7 @@ $add3 = $_POST['add3'];
             <tr>
                 <td>주소</td>
                 <td>
-                    <?php echo $postal . "<br>" . $add1 . $add2 . "<br>" . $add3; ?>
+                    <?php echo $postal . "<br>" . $add1 . $add2 . "<br>" . $add3 . $add4; ?>
                 </td>
             </tr>
         </table>

@@ -5,39 +5,159 @@
     <title>join</title>
     <link rel="stylesheet" type="text/css" href="./join.css"/>
 </head>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+    var idCk = 0;
     function checkId() {
-        if (user_id == null || user_id.equals(""))
-            alert("id 입력해 !");
-        if (user_id.equals("test"))
-            alert("이미 있어 !");
+        var id = document.getElementById('user_id').value;
+        if (id == "" || id == null)
+            alert("id를 입력하세요.");
+        else if (id == "test")
+            alert("이미 있는 아이디입니다.");
+        else {
+            alert("사용 가능한 아이디입니다.");
+            idCk = 1;
+        }
+    }
+    
+    function nullCk() {
+        if (idCk == 1) {
+            var id = document.user_info.user_id.value;
+            var pwd = document.user_info.user_pwd.value;
+            var pwd2 = document.user_info.user_pwd2.value;
+            var name = document.user_info.user_name.value;
+            var phone = document.user_info.phone.value;
+            var email = document.user_info.email.value;
+            var postal = document.user_info.postal.value;
+            var add1 = document.user_info.add1.value;
+            var add2 = document.user_info.add2.value;
+            var add3 = document.user_info.add3.value;
+
+            if (id == "" || id == null) {
+                alert("ID 를 입력하세요.");
+                return false;
+            }
+            if (pwd == "" || pwd == null) {
+                alert("패스워드를 입력하세요.");
+                return false;
+            }
+            if (pwd2 == "" || pwd2 == null) {
+                alert("패스워드 확인을 입력하세요.");
+                return false;
+            }
+            if (pwd != pwd2) {
+                alert("비밀번호가 일치하지 않습니다.");
+                return false;
+            }   
+            if (name == "" || name == null) {
+                alert("이름을 입력하세요.");
+                return false;
+            }
+            if (phone == "" || phone == null) {
+                alert("전화번호를 입력하세요.");
+                return false;
+            }
+            if (email == "" || email == null) {
+                alert("이메일을 입력하세요.");
+                return false;
+            }
+            if (postal == "" || postal == null) {
+                alert("우편번호를 입력하세요.");
+                return false;
+            }
+
+        } else {
+            alert("id 중복 확인 해주세요.");
+            return false;
+        }
+    }
+
+    function mkNull(id) {
+        document.getElementById(id).value = "";
+    }
+
+    function findAddr() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postal').value = data.zonecode;
+                document.getElementById("add1").value = roadAddr;
+                document.getElementById("add2").value = data.jibunAddress;
+                
+                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                if(roadAddr !== ''){
+                    document.getElementById("add4").value = extraRoadAddr;
+                } else {
+                    document.getElementById("add4").value = '';
+                }
+
+                var guideTextBox = document.getElementById("guide");
+                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                if(data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+
+                } else if(data.autoJibunAddress) {
+                    var expJibunAddr = data.autoJibunAddress;
+                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                }
+            }
+        }).open({
+            autoClose: true
+        });
     }
 </script>
 <body>
-    <form method="post" action="join.php">
+    <form method="post" action="join.php" name="user_info" onsubmit="return nullCk()">
         <div>
-            <table width=600>
+            <table width=800>
                 <tr>
                     <td colspan=2 class="mkCenter"><h2>회원가입</h2></td>
                 </tr>
                 <tr>
-                    <td>아이디</td>
+                    <td width=200>아이디</td>
                     <td>
-                        <input type="text" name="user_id">
-                        <span onclick="checkId();" style="cursor: pointer;">[ID 중복 검사]</span>
+                        <input type="text" name="user_id" id="user_id">
+                        <span onclick="checkId(event);" style="cursor: pointer;">[ID 중복 검사]</span>
                     </td>
                 </tr>
                 <tr>
                     <td>비밀번호</td>
-                    <td><input type="password" name="user_pwd"></td>
+                    <td><input type="password" name="user_pwd" id="user_pwd"></td>
                 </tr>
                 <tr>
                     <td>비밀번호 확인</td>
-                    <td><input type="password" name="user_pwd2"></td>
+                    <td><input type="password" name="user_pwd2" id="user_pwd2"></td>
                 </tr>
                 <tr>
                     <td>이름</td>
-                    <td><input type="text" name="user_name"></td>
+                    <td><input type="text" name="user_name" id="user_name"></td>
                 </tr>
                 <tr>
                     <td>성별</td>
@@ -52,11 +172,11 @@
                 </tr>
                 <tr>
                     <td>휴대전화</td>
-                    <td><input type="text" name="phone"></td>
+                    <td><input type="text" name="phone" id="phone"></td>
                 </tr>
                 <tr>
                     <td>이메일</td>
-                    <td><input type="text" name="email"></td>
+                    <td><input type="text" name="email" id="email"></td>
                 </tr>
                 <tr>
                     <td>취미</td>
@@ -79,11 +199,12 @@
                 <tr>
                     <td>주소</td>
                     <td>
-                        <input type="text" name="postal">
-                        <input type="button" value="우편번호 찾기"><br>
-                        <input type="text" name="add1" value="도로명주소">
-                        <input type="text" name="add2" value="지번주소"><br>
-                        <input type="text" name="add3" value="나머지 주소">
+                        <input type="text" name="postal" id="postal" placeholder="우편번호">
+                        <input type="button" value="우편번호 찾기" onclick="findAddr()"><br>
+                        <input type="text" name="add1" id="add1" placeholder="도로명주소" size=30>
+                        <input type="text" name="add2" id="add2" placeholder="지번주소" size=30><br>
+                        <input type="text" name="add3" id="add3" placeholder="상세주소" onclick="mkNull('add3')">
+                        <input type="text" name="add3" id="add4" placeholder="참고항목">
                     </td>
                 </tr>
                 <tr>
