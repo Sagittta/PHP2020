@@ -76,6 +76,54 @@ php 설정 파일
 ```$conn = mysqli_connect('호스트이름', '아이디', '비밀번호', '사용할 데이터베이스');```
 
 
+## mySQL
+mysql server 실행
+```
+C:\Bitnami\wampstack-7.3.13-0\mysql\bin\mysqld
+```
+
+
+### mysql user 추가
+1. 접속
+  ```mysql -u아이디 -p비밀번호 사용할DB명```
+2. 계정 추가
+  1. 계정 생성
+  > 내부계정 / 외부계정
+  ```
+    create user '유저이름'@'localhost' identified by '비밀번호' password expire never;
+    create user '유저이름'@'%' identified by '비밀번호';
+  ```
+  2. 권한 부여
+  > grant : 모든 권한 부여
+  ```
+  grant all privileges on testdb.* to '유저이름'@'localhost';
+  grant all privileges on testdb.* to '유저이름'@'%';
+  ```
+
+
+### table
+1. 데이터 삽입
+  ```insert into 테이블명(필드) values(값);```
+2. 데이터 수정
+  ```update 테이블명 set 변경필드 = 변경할값 where 조건;```
+
+
+### alter
+1. 테이블 이름 변경
+  ```alter table 테이블명 rename 변경테이블명;```
+2. 컬럼 추가
+  ```
+  alter table 테이블명 add 추가컬럼명 컬럼타입 
+  alter table 테이블명 add 추가컬럼명 컬럼타입 after 컬럼명;
+  ```
+3. 컬럼 타입변경
+  ```alter table 테이블명 modify column 컬럼명 변경컬럼타입;```
+4. 컬럼 이름 변경
+  ```alter table 테이블명 change column 기존컬럼명 변경컬럼명 컬럼타입;```
+5. 컬럼 삭제
+  ```alter table 테이블명 drop column 컬럼명;```
+
+
 ## HTML
 ### form tag
 사용자가 입력할 수 있는 form 제공
