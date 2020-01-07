@@ -4,11 +4,9 @@ $id = $_POST['user_id'];
 $pwd = $_POST['user_pwd'];
 $pwd2 = $_POST['user_pwd2'];
 $name = $_POST['user_name'];
-$gender = $_POST['user_s'];
 $t_phone = $_POST['telephone'];
 $phone = $_POST['phone'];
 $email = $_POST['email'];
-$hobby = $_POST['hobby'];
 $cause = $_POST['cause'];
 $postal = $_POST['postal'];
 $add1 = $_POST['add1'];
@@ -44,7 +42,14 @@ $add4 = $_POST['add4'];
             </tr>
             <tr>
                 <td>성별</td>
-                <td><?php echo $gender ?></td>
+                <td>
+                    <?php 
+                        if (!empty($_POST['gender']))
+                            echo $_POST['gender']; 
+                        else
+                            echo "선택 안 함";
+                    ?>
+                </td>
             </tr>
             <tr>
                 <td>집 전화</td>
@@ -61,9 +66,13 @@ $add4 = $_POST['add4'];
             <tr>
                 <td>취미</td>
                 <td>
-                    <?php 
-                        for ($i = 0; $i < count($hobby); $i++) {
-                            echo $hobby[$i] . " ";
+                    <?php
+                        if (empty($_POST['hobby']))
+                            echo "취미 없음";
+                        else {
+                            for ($i = 0; $i < count($_POST['hobby']); $i++) {
+                                echo $hobby[$i] . " ";
+                            }
                         }
                     ?>
                 </td>
@@ -75,7 +84,7 @@ $add4 = $_POST['add4'];
             <tr>
                 <td>주소</td>
                 <td>
-                    <?php echo $postal . "<br>" . $add1 . $add2 . "<br>" . $add3 . $add4; ?>
+                    <?php echo $postal . "<br>" . $add1 . "<br>" . $add2 . "<br>" . $add3 . $add4; ?>
                 </td>
             </tr>
         </table>
