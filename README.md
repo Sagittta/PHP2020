@@ -25,9 +25,13 @@ php 설정 파일
 
 ## 배열 선언 방법
 * 구버전
-  ```$arr = array('a', 'b', 'c', 'd', 'e');```
+  ```
+  $arr = array('a', 'b', 'c', 'd', 'e');
+  ```
 * 최근 버전
-```$arr2 = ['a', 'b', 'c', 'd', 'e'];```
+  ```
+  $arr2 = ['a', 'b', 'c', 'd', 'e'];
+  ```
 
 
 ## 파일 처리
@@ -67,3 +71,45 @@ php 설정 파일
   $id = $_POST['user_id']
 ```
   
+
+## php 에서 mysql 연동하기
+```$conn = mysqli_connect('호스트이름', '아이디', '비밀번호', '사용할 데이터베이스');```
+
+
+## HTML
+### form tag
+사용자가 입력할 수 있는 form 제공
+* 한 줄 텍스트 입력
+  ```
+  <input type="text" name="" value="초기값" size=12 maxlength=20>
+  ```
+* 비밀번호 입력
+  ```
+  <input type="pwd" name="">
+  ```
+* 여러 줄 입력
+  ```
+  <textarea rows="30" cols="20">초기값</textarea>
+  ```
+* 선택
+  ```
+  <input type="checkbox" name="" value="">
+  <input type="radio" name="1" value="">
+  <input type="radio" name="1" value="">
+  ```
+  > radio / checkbox 에서는 name 이 같아야 함.
+  ```
+  <select name="sel">
+      <option value="">서울</option>
+      <option value="">부산</option>
+      <option value="">대전</option>
+  </select>
+  ```
+* 파일 업로드 / 선택 시
+  ```
+  <input type="file" name="">
+  ```
+* 숨김
+  ```
+  <input type="hidden">
+  ```
