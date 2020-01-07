@@ -1,8 +1,8 @@
 <?php
 
 $id = $_POST['user_id'];
-$pwd = $_POST['user_pwd'];
-$pwd2 = $_POST['user_pwd2'];
+$pwd = $_POST['user_passwd'];
+$pwd2 = $_POST['user_passwd2'];
 $name = $_POST['user_name'];
 $t_phone = $_POST['telephone'];
 $phone = $_POST['phone'];
