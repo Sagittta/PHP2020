@@ -1,13 +1,23 @@
 <?php
 
-// id : test / pwd : 1234
+$host = 'localhost';
+$user = 'test';
+$pwd = '1111';
+$dbName = 'testdb';
+$conn = mysqli_connect($host, $user, $pwd, $dbName);
+if (!$conn)
+    echo "연결 실패하였습니다.";
 
 // post 방식으로 넘어온 사용자 입력값을 받는 변수
-$id = $_POST['user_id'];
-$pwd = $_POST['user_pwd'];
+$user_id = $_POST['user_id'];
+$passwd = $_POST['user_passwd'];
 
-if ($id == "test") {
-    if ($pwd == "1234") {
+$sql = "INSERT INTO login(user_id, passwd) VALUES('$user_id', '$passwd')";
+mysqli_query($conn, $sql);
+mysqli_close($conn);
+
+if ($user_id == "test") {
+    if ($passwd == "1234") {
         echo "로그인 완료 되었습니다.";
     } else {
         echo "비밀번호가 틀립니다.";
@@ -26,6 +36,9 @@ if ($id == "test") {
         <form method="post" action="join.html">
             <div>
                 <table width=300>
+                    <tr>
+                        <td class="mkCenter" colspan=2><h3>없는 아이디입니다..</h3></td>
+                    </tr>
                     <tr>
                         <td>회원가입하러 가쟝</td>
                         <td><input type="submit" value="고고~"></td>
