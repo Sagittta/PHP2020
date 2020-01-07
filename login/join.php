@@ -14,6 +14,7 @@ $postal = $_POST['postal'];
 $add1 = $_POST['add1'];
 $add2 = $_POST['add2'];
 $add3 = $_POST['add3'];
+$add4 = $_POST['add4'];
 
 ?>
 <!DOCTYPE html>
