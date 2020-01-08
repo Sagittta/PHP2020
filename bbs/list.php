@@ -16,6 +16,20 @@
             <tr>
                 <td colspan=5 class="mkCenter"><h1> 응죠미 게시판 </h1></td>
             </tr>
+            <tr>
+                <td colspan=5 class="mkRight">
+                    <form method="post" action="search.php">
+                        <select name="search_type">
+                            <option value="전체검색">전체검색</option>
+                            <option value="제목">제목</option>
+                            <option value="작성자">작성자</option>
+                            <option value="내용">내용</option>
+                        </select>
+                        <input type="text" name="search_word">
+                        <input type="submit" value="검색">
+                    </form>
+                </td>
+            </tr>
 
 <?php
 
