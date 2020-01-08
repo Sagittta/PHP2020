@@ -6,16 +6,19 @@
     <link rel="stylesheet" type="text/css" href="./write.css"/>
 </head>
 <body>
-    <form method="post" action="write.php">
+    <form method="post" action="write_pro.php">
         <div>
             <table width=600>
+                <tr>
+                    <td class="mkCenter" colspan=2><h1>응죠미 게시판 글 쓰기</h1></td>
+                </tr>
                 <tr>
                     <td>ID : </td>
                     <td><input type="text" name="user_id"></td>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input type="pwd" name="user_pwd"></td>
+                    <td><input type="password" name="passwd"></td>
                 </tr>
                 <tr>
                     <td>title : </td>
@@ -24,12 +27,8 @@
                 <tr>
                     <td>Content: </td>
                     <td>
-                        <textarea rows=20 cols=50></textarea>
+                        <textarea name="content" rows=20 cols=50></textarea>
                     </td>
-                </tr>
-                <tr>
-                    <td>File : </td>
-                    <td><input type="file" name="파일 선택"></td>
                 </tr>
                 <tr>
                     <td colspan=2 class="mkCenter"><input type="submit" value="등록하기"></td>

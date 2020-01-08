@@ -14,3 +14,9 @@ td {
 .mkCenter {
     text-align: center;
 }
+.mkBorder {
+    border: 1px gray;
+}
+.mkRight {
+    text-align: right;
+}
